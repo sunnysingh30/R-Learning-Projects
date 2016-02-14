@@ -1,0 +1,18 @@
+{
+    "contents" : "Case study: Building your own Recommendation engine\n- Prepare the data to buil recommendation engine\n- explore the the data through visualization\n- Choose & build recommendation model\n- Optimize the performance of the recommendation model by setting its parameters\n\n#Preparing the data ----------------------------------\n#Data description:\n  MS users visiting website for one week. For each user, the data displays \nwhich areas the users visited. We will now refer website areas as \"items\"\nfor simplicity.\n\n5k users represented by seq numbers between 10k and 15k.\n~298 items are represented by numbers between 1k and 1297 \n\nUnstructered text file. Each record contains a nmber of fields between 2 & 6. \nThe first field is a letter defining what the record contains. \nThere are 3 main types of records, as follows:\n-  Attribute (A) : description of website aarea.\n-  Case (C) : This is case for each user, containing its ID\n-  Vote (V) : This is the vote lines for the case. \n \nThere is just one case for each user.\n\n# Importing the data:\n# Loading packages:\nlibrary(\"data.table\") # manipulates the data\nlibrary(\"ggplot2\") # builds vcharts\nlibrary(\"recommenderlab\") #build recommendation engines\ninstall.packages(\"countrycode\")\nlibrary(\"countrycode\") # contains countries names\n\n\nfile_in <- \"anonymous-msweb.test.txt\"\n\ntable_in <- read.csv(file_in, header=T)\n",
+    "created" : 1451559523071.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1966230354",
+    "id" : "2869046C",
+    "lastKnownWriteTime" : 8608480258425185024,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

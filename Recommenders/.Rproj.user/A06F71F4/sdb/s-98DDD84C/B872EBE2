@@ -1,0 +1,18 @@
+{
+    "contents" : "rm(list=ls())\n# 5 functions to do Principal components analysis in R\nprcomp()    # Stats\nprincomp()  #Stats\nPCA()       #FactoMiner\ndudi.pca()  #ade4\nacp()       #amap\n\ninstall.packages('FactoMineR')\ninstall.packages('ade4')\ninstall.packages('amap')\n\npca1 <- prcomp(USArrests, scale.=T)\npca1$sdev\nhead(pca1$rotation)\nhead(pca1$x)\n\n\n# Using princomp()\npca2 <- princomp(USArrests, cor=T)\npca2$sdev\nunclass(loadings(pca2))\npca2$scores\n\npca2\n#Using PCA()\nlibrary(FactoMineR)\n?PCA\npca3 <- PCA(USArrests, graph = F, scale.unit = T)\npca3$eig\npca3$var$coord\npca3$ind$coord\n\n\n#PAC Plots\nlibrary(ggplot2)\npca1$x\nscores <- as.data.frame(pca1$x)\nhead(scores)\nggplot(scores, aes(x=PC1, y=PC2, label=rownames(scores))) +\n  geom_hline(yintercept=0, color=\"gray65\") +\n  geom_vline(xintercept=0, color=\"gray65\") +\n  geom_text(color=\"tomato\", alpha=0.8, size=4) + \n  ggtitle(\"PCA plot of USA states = Crime Rates\")\n\nplot3d(pca1$)\n\nlibrary(ggplot2)\nscores <- as.data.frame(pca1$x)\nhead(scores)\n\nggplot(scores, aes(x=PC1, y=PC2, label=rownames(scores))) +\n  geom_hline(yintercept=0, color=\"gray65\") +\n  geom_vline(xintercept=0, color=\"gray65\") +\n  geom_text(color=\"tomato\", alpha=0.5, size=4) +\n  ggtitle(\"PCA plot of USA States = Crime Rates\")\n\nplot3d(pca1$x[, 1:3])\nplot3d(comp$PC1, comp$PC2, comp$PC3, col=k$cluster)\n#text3d(pca1$x[,1:3], texts = rownames(USArrests))\ntext3d(pca1$rotation[,1:3], texts=rownames(pca1$rotation), col=\"red\")\ncoords <- NULL\nfor(i in 1:nrow(pca1$rotation)){\n  coords <- rbind(coords, rbind(c(0,0,0), pca1$rotation[i, 1:3]))\n  \n  }\nlines3d(coords, col=\"red\", lwd=2)\n\n#Apply k-means with 3\ncomp <- as.data.frame(pca1$x[,1:3])\nclass(head(comp))\nhead(comp)\nk <- kmeans(comp, 3, nstart=4, iter.max=1000)\n\n\nboxplot(USArrests$UrbanPop ~ k$cluster)\n\n\n########################\nlibrary(NMF)\n?basis\n\nx1 <- c(5,4,1,1)\nx2 <- c(4,5,1,1)\nx3 <- c(1,1,5,5)\nx4 <- c(1,1,4,5)\nx5 <- c(1,1,5,4)\n\nR <- as.matrix(rbind(x1,x2,x3,x4,x5)) # n = 5 rows p = 4 columns \n\nset.seed(12345)\n\nres <- nmf(R, 4,\"lee\") # lee & seung method\n\nV.hat <- fitted(res) \nprint(V.hat) # estimated target matrix\n\n\nw <- basis(res) #  W  user feature matrix matrix\ndim(w) # n x r (n= 5  r = 4)\nprint(w)\n\nh <- coef(res) # H  movie feature matrix\ndim(h) #  r x p (r = 4 p = 4)\nprint(h) \n\n# recommendor system via clustering based on vectors in H\nmovies <- data.frame(t(h))\nfeatures <- cbind(movies$X1,movies$X2)\nplot(features)\ntitle(\"Movie Feature Plot\")\n\n\n\n\n\n\n\n\n",
+    "created" : 1450254198807.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3923719600",
+    "id" : "B872EBE2",
+    "lastKnownWriteTime" : 2317438867687431936,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
